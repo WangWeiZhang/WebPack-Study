@@ -1,9 +1,26 @@
 module.exports = {
+	 devtool: 'eval-source-map',
 	entry: __dirname + "/app/main.js",
 	output:{
 		path: __dirname + "/public",
-		filename:"bundle3.js"
+		filename:"bundle6.js"
 	},
+	module:{
+    	rules: [
+     	 {
+      	  	test: /\.json$/,
+        	use: 'json-loader'
+     	 },
+     	 {
+     	 	test:/\.js$/,
+     	 	exclude:/node_modules/,
+     	 	loader:"babel",
+     	 	query:{
+     	 		presets:['es2015','react']
+     	 	}
+     	 }
+   		]
+  	},
 	devServer:{
 		contentBase:"./public/",
 		inline:true,
