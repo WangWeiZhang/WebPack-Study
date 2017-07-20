@@ -2,8 +2,24 @@ module.exports = {
 	entry: __dirname + "/app/main.js",
 	output:{
 		path: __dirname + "/public",
-		filename:"bundle3.js"
+		filename:"bundle4.js"
 	},
+    module: {//在配置文件里添加JSON loader
+        loaders: [
+            {
+                test: /\.json$/,
+                loader: "json"
+            },
+			{
+				test:/\.js$/,
+				exclude:/node_modules/,
+				loader:"babel",//在webpack module部分的loaders里进行配置即
+                query: {
+                    presets: ['es2015','react']
+                }
+			}
+        ]
+    },
 	devServer:{
 		contentBase:"./public/",
 		inline:true,
